@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Contract Validation</title>
+    
+    <!-- Correctly linking CSS and JS files using Flask's url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div id="authPage" class="container">
+        <h2>Welcome</h2>
+        <button onclick="showSignIn()">Sign In</button>
+        <button onclick="showSignUp()">Sign Up</button>
+    </div>
+
+    <div id="signUpPage" class="container" style="display: none;">
+        <h2>Sign Up</h2>
+        <input type="text" id="signUpName" placeholder="Enter Your Name">
+        <input type="email" id="signUpEmail" placeholder="Enter Your Email">
+        <input type="password" id="signUpPassword" placeholder="Enter Password">
+        <button onclick="validateSignUp()">Sign Up</button>
+        <button onclick="goToAuthPage()">Back</button>
+    </div>
+
+    <div id="signInPage" class="container" style="display: none;">
+        <h2>Sign In</h2>
+        <input type="email" id="signInEmail" placeholder="Enter Your Email">
+        <input type="password" id="signInPassword" placeholder="Enter Password">
+        <button onclick="validateSignIn()">Sign In</button>
+        <button onclick="goToAuthPage()">Back</button>
+    </div>
+
+    <div id="uploadPage" class="container" style="display: none;">
+        <h2>Business Contract Validation</h2>
+        <label for="contractType">Select Contract Type:</label>
+        <select id="contractType">
+            <option value="affiliate">Affiliate</option>
+            <option value="co-branding">Co-Branding</option>
+            <option value="development">Development</option>
+            <option value="endorsement">Endorsement</option>
+            <option value="hosting">Hosting</option>
+        </select>
+        
+        <label for="fileUpload">Upload Contract Document:</label>
+        <input type="file" id="fileUpload" accept=".pdf,.docx">
+        <button onclick="validateContract()">Validate Contract</button>
+    </div>
+
+    <div id="resultPage" class="container" style="display: none;">
+        <h2>Contract Validation Result</h2>
+
+        <table class="result-table">
+            <tr>
+                <th>Validity</th>
+                <td class="result-value"><span id="validity">0%</span></td>
+            </tr>
+            <tr>
+                <th>Similarity Percentage</th>
+                <td class="result-value"><span id="similarityPercentage">0%</span></td>
+            </tr>
+        </table>
+
+        <h3>Recommendations</h3>
+        <ul id="recommendations" style="list-style-type: none; padding: 0; margin: 0;"></ul>
+        <button onclick="goBack()">Back</button>
+    </div>
+</body>
+</html>
